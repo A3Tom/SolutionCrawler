@@ -7,7 +7,7 @@ namespace SolutionCrawler.Classes
 {
     public class App : IApp
     {
-        private const string BASE_DIRECTORY = @"C:\Billing";
+        private const string BASE_DIRECTORY = @"..\Target\";
 
         private readonly IFileReader _fileReader;
 
