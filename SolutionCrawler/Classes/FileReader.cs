@@ -3,6 +3,7 @@ using SolutionCrawler.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -16,75 +17,73 @@ namespace SolutionCrawler.Classes
 
         }
 
-        public Project ReadCSProjFile(string filePath)
+        public Dictionary<Guid, string> ReadCSProjFile(string filePath)
         {
             XDocument doc = XDocument.Load(filePath);
+
+            return Crawl_nodes(doc);
+        }
+
+        public Dictionary<Guid, string> Crawl_nodes(XDocument doc)
+        {
             Dictionary<Guid, string> Projects = new Dictionary<Guid, string>();
 
-            foreach (XElement el in doc.Root.Elements())
+            Guid currentProjectGuid = Guid.Empty;
+            string currentProjectName = string.Empty;
+
+            foreach (XElement element in doc.Root.Elements().Elements())
             {
                 Guid newProjectGuid = Guid.Empty;
                 string newProjectName = string.Empty;
+                
+                var switchCase = element.Name.LocalName;
 
-                Console.WriteLine("{0} {1}", el.Name.LocalName, el?.Attribute("Reference")?.Value);
-                Console.WriteLine("Attributes:");
-                foreach (XAttribute attr in el.Attributes())
-                    Console.WriteLine("    {0}", attr);
-                Console.WriteLine("[ ] Elements:");
-
-                foreach (XElement element in el.Elements())
+                switch (switchCase)
                 {
-                    Console.WriteLine("[2] {0}: {1}", element.Name.LocalName, element.Value);
-
-                    if (element.Name.LocalName == "ProjectGuid") {
-                        Guid.TryParse(element.Value, out newProjectGuid);
-                    }
-                    else if (element.Name.LocalName == "AssemblyName")
-                    {
-                        newProjectName = element.Value;
-                    }
-                    else if (element.Name.LocalName == "ProjectReference")
-                    {
+                    case "AssemblyName":
+                        currentProjectName = element.Value;
+                        break;
+                    case "ProjectGuid":
+                        Guid.TryParse(element.Value, out currentProjectGuid);
+                        break;
+                    case "ProjectReference":
                         foreach (var node in element.Nodes())
                         {
                             var nodeElement = (XElement)node;
 
-                            if(nodeElement.Name.LocalName == "Project")
+                            if (nodeElement.Name.LocalName == "Project")
                             {
                                 Guid.TryParse(nodeElement.Value, out newProjectGuid);
-                            } else 
+                            }
+                            else
                             if (nodeElement.Name.LocalName == "Name")
                             {
                                 newProjectName = nodeElement.Value;
                             }
                         }
+                        break;
+                    default:
+                        break;
+                }
 
-                        Projects.TryAdd(newProjectGuid, newProjectName);
-                    }
-
-                    foreach (XAttribute elAttr in element.Attributes())
-                    {
-                        Console.WriteLine($"[3] [Name]: {elAttr.Name.LocalName} | [Value]: {elAttr.Value}");
-                    }
+                if (currentProjectName != string.Empty && currentProjectGuid != Guid.Empty)
+                {
+                    Projects.TryAdd(currentProjectGuid, currentProjectName);
                 }
 
                 if (newProjectName != string.Empty && newProjectGuid != Guid.Empty)
                 {
-                    var result = Projects.TryAdd(newProjectGuid, newProjectName);
-                    Console.WriteLine($"Dictionary case matched: {result}");
+                    Projects.TryAdd(newProjectGuid, newProjectName);
                 }
             }
 
-            Console.WriteLine("-=-=- Dictionary Output =-=-=-");
-
+            Console.WriteLine($"Project: {currentProjectName} | Guid: {currentProjectGuid}");
             foreach (var proj in Projects)
             {
-                Console.WriteLine($"Key: {proj.Key} | Value: {proj.Value}");
+                Console.WriteLine($"Dependency: {proj.Value} | Guid: {proj.Key}");
             }
 
-            Console.WriteLine("-=-=- End of Dictionary Output =-=-=-");
-
-            return new Project();
+            return Projects;
         }
     }
 }

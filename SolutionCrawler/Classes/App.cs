@@ -1,6 +1,7 @@
 ﻿using SolutionCrawler.Interfaces;
 using SolutionCrawler.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace SolutionCrawler.Classes
@@ -10,6 +11,7 @@ namespace SolutionCrawler.Classes
         private const string BASE_DIRECTORY = @"..\Target\";
 
         private readonly IFileReader _fileReader;
+        private Dictionary<Guid, string> _projects = new Dictionary<Guid, string>();
 
         public App(IFileReader fileReader)
         {
@@ -24,22 +26,23 @@ namespace SolutionCrawler.Classes
             string[] projectFilePaths = Directory.GetFiles(BASE_DIRECTORY, "*.csproj", SearchOption.AllDirectories);
 
             Console.WriteLine("----------------");
-            Console.WriteLine("Solution Files");
-            foreach (string file in solutionFiles)
-            {
-                Console.WriteLine(file);
-            }
-
-            Console.WriteLine("----------------");
-            Console.WriteLine("Project Files");
             foreach (string filePath in projectFilePaths)
             {
                 Console.WriteLine($"New Project found: {filePath}");
-                Project project = _fileReader.ReadCSProjFile(filePath);
+
+                foreach(var project in _fileReader.ReadCSProjFile(filePath))
+                {
+                    _projects.TryAdd(project.Key, project.Value);
+                }
                 
-                Console.WriteLine("End of Project");
+                Console.WriteLine();
             }
 
+            Console.WriteLine("Unique projects:");
+            foreach (var project in _projects)
+            {
+                Console.WriteLine($"Name: {project.Value} | Guid: {project.Key}");
+            }
 
             Console.ReadLine();
         }
