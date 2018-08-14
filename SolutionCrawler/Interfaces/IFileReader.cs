@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SolutionCrawler.Models;
 
 namespace SolutionCrawler.Interfaces
 {
     public interface IFileReader
     {
-        Dictionary<Guid, string> ReadCSProjFile(string fileLocation);
+        Project_VM ReadCSProjFile(string fileLocation);
     }
 }

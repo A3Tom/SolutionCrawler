@@ -10,15 +10,11 @@ namespace SolutionCrawler.Models
         [Key]
         public Guid ProjectGuid { get; set; }
 
-        [XmlAttribute("AssemblyName")]
         public string ProjectName { get; set; }
 
         public string AbsolutePath { get; set; }
 
-        public List<Project_VM> Dependancies { get; set; }
-
-        [XmlAttribute("Reference")]
-        public List<string> Deps { get; set; }
+        public List<Guid> Dependancies { get; set; }
 
         public DateTime LastModified { get; set; }
     }

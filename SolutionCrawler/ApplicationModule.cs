@@ -16,8 +16,13 @@ namespace SolutionCrawler
                 return log;
             });
             Bind<IApp>().To<App>().InTransientScope();
+
+            //Declare Transient
             Bind<IFileReader>().To<FileReader>().InTransientScope();
             Bind<IFileWriter>().To<FileWriter>().InTransientScope();
+
+            //Declare Singleton
+            Bind<IXMLDeserializer>().To<XMLDeserializer>().InSingletonScope();
         }
     }
 }

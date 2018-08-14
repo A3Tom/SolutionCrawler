@@ -5,6 +5,6 @@ namespace SolutionCrawler.Interfaces
 {
     public interface IFileWriter
     {
-        void WriteFiles_ToJSON(List<Project> files);
+        void WriteFiles_ToJSON(List<Project_VM> files);
     }
 }

@@ -3,6 +3,7 @@ using SolutionCrawler.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SolutionCrawler.Classes
 {
@@ -11,11 +12,14 @@ namespace SolutionCrawler.Classes
         private const string BASE_DIRECTORY = @"..\Target\";
 
         private readonly IFileReader _fileReader;
-        private Dictionary<Guid, string> _projects = new Dictionary<Guid, string>();
+        private readonly IFileWriter _fileWriter;
+        private List<Project_VM> _projects;
 
-        public App(IFileReader fileReader)
+        public App(IFileReader fileReader,
+            IFileWriter fileWriter)
         {
             _fileReader = fileReader;
+            _fileWriter = fileWriter;
         }
 
         public void Run()
@@ -25,26 +29,32 @@ namespace SolutionCrawler.Classes
             string[] solutionFiles = Directory.GetFiles(BASE_DIRECTORY, "*.sln", SearchOption.AllDirectories);
             string[] projectFilePaths = Directory.GetFiles(BASE_DIRECTORY, "*.csproj", SearchOption.AllDirectories);
 
-            Console.WriteLine("----------------");
+            _projects = new List<Project_VM>();
+
             foreach (string filePath in projectFilePaths)
             {
-                Console.WriteLine($"New Project found: {filePath}");
+                _projects.Add(_fileReader.ReadCSProjFile(filePath));
+            }
 
-                foreach(var project in _fileReader.ReadCSProjFile(filePath))
-                {
-                    _projects.TryAdd(project.Key, project.Value);
-                }
-                
-                Console.WriteLine();
+            var uniqueProjects = _projects.Distinct();
+
+            Console.WriteLine("All projects:");
+            foreach (var project in _projects)
+            {
+                Console.WriteLine($"Name: {project.ProjectName} | Guid: {project.ProjectGuid}");
             }
 
             Console.WriteLine("Unique projects:");
-            foreach (var project in _projects)
+            foreach (var project in _projects.Distinct())
             {
-                Console.WriteLine($"Name: {project.Value} | Guid: {project.Key}");
+                Console.WriteLine($"Name: {project.ProjectName}");
+                Console.WriteLine($"    Last Modified: {project.LastModified}");
+                Console.WriteLine($"    Guid: {project.ProjectGuid}");
+                Console.WriteLine($"    Guid: {project.Dependancies.Count()}");
+                Console.WriteLine($"    Path: {project.AbsolutePath}");
             }
 
-            Console.ReadLine();
+            _fileWriter.WriteFiles_ToJSON(_projects);
         }
     }
 }
