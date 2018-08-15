@@ -9,7 +9,7 @@ namespace SolutionCrawler.Classes
 {
     public class App : IApp
     {
-        private const string BASE_DIRECTORY = @"..\Target\";
+        private const string BASE_DIRECTORY = @"C:\Repositories\SolutionCrawler\Target\";
 
         private readonly IFileReader _fileReader;
         private readonly IFileWriter _fileWriter;
@@ -50,8 +50,11 @@ namespace SolutionCrawler.Classes
                 Console.WriteLine($"Name: {project.ProjectName}");
                 Console.WriteLine($"    Last Modified: {project.LastModified}");
                 Console.WriteLine($"    Guid: {project.ProjectGuid}");
-                Console.WriteLine($"    Guid: {project.Dependancies.Count()}");
+                Console.WriteLine($"    Refs: {project.Dependencies.Count()}");
                 Console.WriteLine($"    Path: {project.AbsolutePath}");
+                Console.WriteLine($"    Ref : {project.MD5Ref}");
+
+                Console.WriteLine();
             }
 
             _fileWriter.WriteFiles_ToJSON(_projects);

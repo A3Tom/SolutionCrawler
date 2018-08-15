@@ -20,6 +20,7 @@ namespace SolutionCrawler
             //Declare Transient
             Bind<IFileReader>().To<FileReader>().InTransientScope();
             Bind<IFileWriter>().To<FileWriter>().InTransientScope();
+            Bind<IDankCommander>().To<DankCommander>().InTransientScope();
 
             //Declare Singleton
             Bind<IXMLDeserializer>().To<XMLDeserializer>().InSingletonScope();

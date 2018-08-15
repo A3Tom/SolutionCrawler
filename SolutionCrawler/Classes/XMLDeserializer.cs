@@ -4,21 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SolutionCrawler.Classes
 {
     public class XMLDeserializer : IXMLDeserializer
     {
-        public XMLDeserializer()
-        {
+        private readonly IDankCommander _md5Hasher;
 
+        public XMLDeserializer(IDankCommander md5Hasher)
+        {
+            _md5Hasher = md5Hasher;
         }
 
         public Project_VM InflateProjectFromXML(XDocument document, string filePath)
         {
-            Dictionary<Guid, string> DependsOn = new Dictionary<Guid, string>();
+            Dictionary<string, string> DependsOn = new Dictionary<string, string>();
 
             Guid currentProjectGuid = Guid.Empty;
             string currentProjectName = string.Empty;
@@ -27,8 +28,8 @@ namespace SolutionCrawler.Classes
 
             foreach (XElement element in document.Root.Elements().Elements())
             {
-                Guid newProjectGuid = Guid.Empty;
-                string newProjectName = string.Empty;
+                string newReferenceProjectHash = string.Empty;
+                string newReferenceProjectHashObject = string.Empty;
 
                 var switchCase = element.Name.LocalName;
 
@@ -43,31 +44,32 @@ namespace SolutionCrawler.Classes
                     case "ProjectReference":
                         foreach (var referenceElement in element.Elements())
                         {
-                            if (referenceElement.Name.LocalName == "Project")
-                            {
-                                Guid.TryParse(referenceElement.Value, out newProjectGuid);
-                            } else if (referenceElement.Name.LocalName == "Name")
-                            {
-                                newProjectName = referenceElement.Value;
-                            }
+                            var refRelativePath = element.Attribute("Include").Value;
+                            var refAbsolutePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(filePath), refRelativePath));
+
+                            newReferenceProjectHashObject = refAbsolutePath;
+                            newReferenceProjectHash = _md5Hasher.CalculateMD5Hash(refAbsolutePath);
                         }
                         break;
                     default:
                         break;
                 }
 
-                if (newProjectName != string.Empty && newProjectGuid != Guid.Empty)
+                if (newReferenceProjectHash != string.Empty)
                 {
-                    DependsOn.TryAdd(newProjectGuid, newProjectName);
+                    DependsOn.Add(newReferenceProjectHash, newReferenceProjectHashObject);
                 }
             }
 
             return new Project_VM()
             {
-                AbsolutePath = filePath,
+                FullFilePath = filePath,
+                AbsolutePath = Path.GetDirectoryName(filePath),
+                MD5Ref = _md5Hasher.CalculateMD5Hash(filePath),
                 ProjectName = currentProjectName,
                 ProjectGuid = currentProjectGuid,
-                Dependancies = DependsOn.Select(x => x.Key).ToList(),
+                Dependencies = DependsOn.Select(x => x.Key).ToList(),
+                DependancyHashObjects = DependsOn.Select(x => x.Value).ToList(),
                 LastModified = lastModified
             };
         }

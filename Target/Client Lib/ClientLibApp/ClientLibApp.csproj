@@ -44,7 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Server\ServerApp\ServerApp.csproj">
+    <ProjectReference Include="..\..\Server-1.0.0.2\ServerApp\ServerApp.csproj">
       <Project>{3dc72d3b-08dd-4d9e-a199-16828f83d076}</Project>
       <Name>ServerApp</Name>
     </ProjectReference>

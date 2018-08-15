@@ -48,11 +48,11 @@
       <Project>{44cbd9b8-3010-403e-b1cb-e3c6bc99a35a}</Project>
       <Name>ClientLibApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Server\DataApp\DataApp.csproj">
+    <ProjectReference Include="..\..\..\..\Server-1.0.0.2\DataApp\DataApp.csproj">
       <Project>{d9e7a5c5-6f51-438d-981b-83a866e1ecd4}</Project>
       <Name>DataApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Server\ServerApp\ServerApp.csproj">
+    <ProjectReference Include="..\..\..\..\Server-1.0.0.2\ServerApp\ServerApp.csproj">
       <Project>{3dc72d3b-08dd-4d9e-a199-16828f83d076}</Project>
       <Name>ServerApp</Name>
     </ProjectReference>

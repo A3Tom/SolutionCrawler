@@ -1,0 +1,94 @@
+[
+  {
+    "MD5Ref": "18B125F369CDB672F860B7B2C1577C62",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Client\\1.0.5.3\\YerMaw\\ClientApp\\ClientApp.csproj",
+    "ProjectGuid": "879e7e60-4217-4cfb-ab62-4a5c405704e7",
+    "ProjectName": "ClientApp",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Client\\1.0.5.3\\YerMaw\\ClientApp",
+    "Dependencies": [
+      "D7203511F9ECB5DDA0B4C9BCB8C8321A",
+      "DFB362CFFC03A73A288EB35F74CE6511",
+      "A06C3B393C75F2661FD2623B9BBC516F"
+    ],
+    "DependancyHashObjects": [
+      "C:\\Repositories\\SolutionCrawler\\Target\\Client Lib\\ClientLibApp\\ClientLibApp.csproj",
+      "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\DataApp\\DataApp.csproj",
+      "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\ServerApp\\ServerApp.csproj"
+    ],
+    "LastModified": "2018-08-15T00:00:00"
+  },
+  {
+    "MD5Ref": "D7203511F9ECB5DDA0B4C9BCB8C8321A",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Client Lib\\ClientLibApp\\ClientLibApp.csproj",
+    "ProjectGuid": "44cbd9b8-3010-403e-b1cb-e3c6bc99a35a",
+    "ProjectName": "ClientLibApp",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Client Lib\\ClientLibApp",
+    "Dependencies": [
+      "A06C3B393C75F2661FD2623B9BBC516F"
+    ],
+    "DependancyHashObjects": [
+      "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\ServerApp\\ServerApp.csproj"
+    ],
+    "LastModified": "2018-08-15T00:00:00"
+  },
+  {
+    "MD5Ref": "DFB362CFFC03A73A288EB35F74CE6511",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\DataApp\\DataApp.csproj",
+    "ProjectGuid": "d9e7a5c5-6f51-438d-981b-83a866e1ecd4",
+    "ProjectName": "DataApp",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\DataApp",
+    "Dependencies": [],
+    "DependancyHashObjects": [],
+    "LastModified": "2018-08-15T00:00:00"
+  },
+  {
+    "MD5Ref": "FA593CC0019B860409B7D7E977FA05CC",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\Interface App\\Interface App.csproj",
+    "ProjectGuid": "65d04eb0-822c-49d2-8cfb-82bb24521caf",
+    "ProjectName": "Interface App",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\Interface App",
+    "Dependencies": [],
+    "DependancyHashObjects": [],
+    "LastModified": "2018-08-15T00:00:00"
+  },
+  {
+    "MD5Ref": "A06C3B393C75F2661FD2623B9BBC516F",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\ServerApp\\ServerApp.csproj",
+    "ProjectGuid": "3dc72d3b-08dd-4d9e-a199-16828f83d076",
+    "ProjectName": "ServerApp",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.2\\ServerApp",
+    "Dependencies": [],
+    "DependancyHashObjects": [],
+    "LastModified": "2018-08-15T00:00:00"
+  },
+  {
+    "MD5Ref": "B776F5A8EF922FEBEA19AFC4E62DA030",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.5\\DataApp\\DataApp.csproj",
+    "ProjectGuid": "d9e7a5c5-6f51-438d-981b-83a866e1ecd4",
+    "ProjectName": "DataApp",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.5\\DataApp",
+    "Dependencies": [],
+    "DependancyHashObjects": [],
+    "LastModified": "2018-08-15T00:00:00"
+  },
+  {
+    "MD5Ref": "E22E0980C715E2250F447A176DCB2931",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.5\\Interface App\\Interface App.csproj",
+    "ProjectGuid": "65d04eb0-822c-49d2-8cfb-82bb24521caf",
+    "ProjectName": "Interface App",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.5\\Interface App",
+    "Dependencies": [],
+    "DependancyHashObjects": [],
+    "LastModified": "2018-08-15T00:00:00"
+  },
+  {
+    "MD5Ref": "97339E862239C2C6EE3D8CB55101E853",
+    "FullFilePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.5\\ServerApp\\ServerApp.csproj",
+    "ProjectGuid": "3dc72d3b-08dd-4d9e-a199-16828f83d076",
+    "ProjectName": "ServerApp",
+    "AbsolutePath": "C:\\Repositories\\SolutionCrawler\\Target\\Server-1.0.0.5\\ServerApp",
+    "Dependencies": [],
+    "DependancyHashObjects": [],
+    "LastModified": "2018-08-15T00:00:00"
+  }
+]

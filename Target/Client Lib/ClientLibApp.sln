@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientLibApp", "ClientLibApp\ClientLibApp.csproj", "{44CBD9B8-3010-403E-B1CB-E3C6BC99A35A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp", "..\Server\DataApp\DataApp.csproj", "{D9E7A5C5-6F51-438D-981B-83A866E1ECD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp", "..\Server-1.0.0.2\DataApp\DataApp.csproj", "{D9E7A5C5-6F51-438D-981B-83A866E1ECD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
