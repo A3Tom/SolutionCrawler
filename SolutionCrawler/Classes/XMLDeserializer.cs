@@ -51,20 +51,6 @@ namespace SolutionCrawler.Classes
                                 newProjectName = referenceElement.Value;
                             }
                         }
-                        //foreach (var node in element.Nodes())
-                        //{
-                        //    var nodeElement = (XElement)node;
-
-                        //    if (nodeElement.Name.LocalName == "Project")
-                        //    {
-                        //        Guid.TryParse(nodeElement.Value, out newProjectGuid);
-                        //    }
-                        //    else
-                        //    if (nodeElement.Name.LocalName == "Name")
-                        //    {
-                        //        newProjectName = nodeElement.Value;
-                        //    }
-                        //}
                         break;
                     default:
                         break;
@@ -75,12 +61,6 @@ namespace SolutionCrawler.Classes
                     DependsOn.TryAdd(newProjectGuid, newProjectName);
                 }
             }
-
-            //Console.WriteLine($"Project: {currentProjectName} | Guid: {currentProjectGuid}");
-            //foreach (var proj in DependsOn)
-            //{
-            //    Console.WriteLine($"Dependency: {proj.Value} | Guid: {proj.Key}");
-            //}
 
             return new Project_VM()
             {

@@ -30,24 +30,6 @@ namespace SolutionCrawler.Classes
 
             string json = JsonConvert.SerializeObject(files, Formatting.Indented, _jsonSerializerSettings);
             File.WriteAllText(outputDirectory + outputName, json);
-
-
-            //foreach (Project_VM file in files)
-            //{
-            //    string outputDirectory = @"../../../Output/";
-            //    string outputName = $"{file.ProjectName}.json";
-
-            //    if (!Directory.Exists(outputDirectory))
-            //        Directory.CreateDirectory(outputDirectory);
-
-            //    var _jsonSerializerSettings = new JsonSerializerSettings()
-            //    {
-            //        NullValueHandling = NullValueHandling.Include
-            //    };
-
-            //    string json = JsonConvert.SerializeObject(file, Formatting.Indented, _jsonSerializerSettings);
-            //    File.WriteAllText(outputDirectory + outputName, json);
-            //}
         }
     }
 }
