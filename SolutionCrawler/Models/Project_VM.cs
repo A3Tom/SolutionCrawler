@@ -22,5 +22,7 @@ namespace SolutionCrawler.Models
         public List<string> DependancyHashObjects { get; set; }
 
         public DateTime LastModified { get; set; }
+
+        public int TierValue { get; set; }
     }
 }

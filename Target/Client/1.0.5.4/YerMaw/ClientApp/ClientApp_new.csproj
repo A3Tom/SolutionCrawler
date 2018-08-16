@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8FAE5F43-F7EF-4CB4-A5ED-76E2A1191564}</ProjectGuid>
+    <ProjectGuid>{879E7E60-4217-4CFB-AB62-4A5C405704E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClientApp</RootNamespace>
-    <AssemblyName>ClientApp</AssemblyName>
+    <RootNamespace>ClientApp_new</RootNamespace>
+    <AssemblyName>ClientApp_new</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -55,6 +55,10 @@
     <ProjectReference Include="..\..\..\..\Server-1.0.0.2\ServerApp\ServerApp.csproj">
       <Project>{3dc72d3b-08dd-4d9e-a199-16828f83d076}</Project>
       <Name>ServerApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\1.0.5.3\YerMaw\ClientApp\ClientApp.csproj">
+      <Project>{8fae5f43-f7ef-4cb4-a5ed-76e2a1191564}</Project>
+      <Name>ClientApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
